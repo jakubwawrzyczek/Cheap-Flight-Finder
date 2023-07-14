@@ -2,7 +2,6 @@ import requests
 import os
 from dotenv import load_dotenv
 from flight_data import FlightData
-from data_manager import DataManager
 
 load_dotenv()
 
