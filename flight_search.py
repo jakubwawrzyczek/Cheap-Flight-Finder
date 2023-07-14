@@ -16,6 +16,7 @@ HEADERS = {
 
 class FlightSearch:
 
+    # gets City code using Tequilla API
     def get_destination_code(self, city_name):
         query = {
             'term': f'{city_name}',
@@ -26,6 +27,7 @@ class FlightSearch:
         code = response.json()['locations'][0]['code']
         return code
 
+    # searches for flight from London to given City
     def search_for_flight(self, destination, from_time, to_time):
         query = {
             'fly_from': 'LON',

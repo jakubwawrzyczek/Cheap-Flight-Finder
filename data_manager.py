@@ -15,11 +15,13 @@ class DataManager:
     def __init__(self):
         self.destination_data = {}
 
+    # getting data from google sheets using Sheety API
     def get_destination_data(self):
         response = requests.get(url=sheety_get_endpoint, headers=headers)
         self.destination_data = response.json()['prices']
         return self.destination_data
 
+    # putting IATA Code to sheet using Sheety API
     def put_destination_data(self):
         for city in self.destination_data:
             new_data = {
@@ -28,6 +30,3 @@ class DataManager:
                 }
             }
             response = requests.put(url=f'{sheety_get_endpoint}/{city["id"]}', json=new_data, headers=headers)
-
-    def is_price_the_lowest(self, new_price):
-        pass
