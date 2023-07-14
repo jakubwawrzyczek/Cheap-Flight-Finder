@@ -28,4 +28,3 @@ class DataManager:
                 }
             }
             response = requests.put(url=f'{sheety_get_endpoint}/{city["id"]}', json=new_data, headers=headers)
-            print(response.text)
