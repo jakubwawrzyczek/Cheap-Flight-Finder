@@ -28,3 +28,6 @@ class DataManager:
                 }
             }
             response = requests.put(url=f'{sheety_get_endpoint}/{city["id"]}', json=new_data, headers=headers)
+
+    def is_price_the_lowest(self, new_price):
+        pass

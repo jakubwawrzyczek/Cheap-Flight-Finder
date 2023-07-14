@@ -1,7 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
-import datetime
+from flight_data import FlightData
+from data_manager import DataManager
 
 load_dotenv()
 
@@ -27,7 +28,7 @@ class FlightSearch:
 
     def search_for_flight(self, destination, from_time, to_time):
         query = {
-            'fly_from': 'WAW',
+            'fly_from': 'LON',
             'fly_to': f'{self.get_destination_code(destination)}',
             'date_from': from_time.strftime("%d/%m/%Y"),
             'date_to': to_time.strftime("%d/%m/%Y"),
@@ -40,4 +41,20 @@ class FlightSearch:
         }
 
         response = requests.get(url=f'{TEQUILA_ENDPOINT}/v2/search', params=query, headers=HEADERS)
-        return response.json()['data'][0]
+        try:
+            data = response.json()['data'][0]
+        except IndexError:
+            print(f'No flights found for {destination}')
+            return None
+        else:
+            flight_data = FlightData(
+                price=data['price'],
+                city_from=data['route'][0]['cityFrom'],
+                city_from_IATA=data['route'][0]['flyFrom'],
+                city_to=data['route'][0]['cityTo'],
+                city_to_IATA=data['route'][0]['flyTo'],
+                out_date=data['route'][0]['local_departure'].split('T')[0],
+                return_date=data['route'][1]['local_departure'].split('T')[0],
+            )
+
+            return flight_data
