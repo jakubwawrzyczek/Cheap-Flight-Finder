@@ -1,10 +1,14 @@
 from twilio.rest import Client
+import smtplib
 import os
 
 # loads an .env file to load sensitive data from it
 from dotenv import load_dotenv
 
 load_dotenv()
+
+MY_EMAIL = os.environ.get("MY_EMAIL_ENV")
+MY_PASSWORD = os.environ.get("MY_PASSWORD_ENV")
 
 
 class NotificationManager:
@@ -22,3 +26,18 @@ class NotificationManager:
         )
 
         print(message.sid)
+
+    def send_email(self, data, message):
+        with smtplib.SMTP('outlook.office365.com') as connection:
+            connection.starttls()
+            connection.login(MY_EMAIL, MY_PASSWORD)
+            for user in data:
+                email = user['email']
+                name = user['firstName']
+                try:
+                    connection.sendmail(from_addr=MY_EMAIL, to_addrs=email,
+                                        msg=f'Subject::New Low Price Flight!!\n\nHey {name},\n{message}'.encode(
+                                            'utf-8'))
+                except:
+                    print(f'Wrong mail: {email}')
+                    continue

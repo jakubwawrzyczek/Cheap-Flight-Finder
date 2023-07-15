@@ -30,11 +30,22 @@ if need_to_update:
 # checks if any flight price is lower than googl sheets prices
 for row in sheet_data:
     flight = flight_search.FlightSearch().search_for_flight(f'{row["city"]}', tomorrow, six_months_from_today)
-    message = f'Low price alert! {flight.price} for flight from ' \
-              f'{flight.city_from}({flight.city_from_IATA}) to ' \
-              f'{flight.city_to}({flight.city_to_IATA})! \n' \
-              f'{flight.out_date} - {flight.return_date}.'
+
+    if flight is None:
+        continue
+
     # sends message
-    print(message)
     if flight.price < row['lowestPrice']:
+        message = f'Low price alert! {flight.price} for flight from ' \
+                  f'{flight.city_from}({flight.city_from_IATA}) to ' \
+                  f'{flight.city_to}({flight.city_to_IATA})! \n' \
+                  f'{flight.out_date} - {flight.return_date}.'
+
+        if int(flight.stop_overs) > 0:
+            message += f'\nFlight has {flight.stop_overs} stop over(s), via {flight.via_city}.'
+
         NotificationManager().send_sms(message)
+
+        customer_data = data_manager.get_customer_data()
+        NotificationManager().send_email(customer_data, message)
+        print(message)

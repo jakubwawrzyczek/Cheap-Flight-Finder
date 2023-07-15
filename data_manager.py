@@ -4,9 +4,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-sheety_get_endpoint = f'{os.environ.get("SHEETY_ENDPOINT_ENV")}'
+SHEETY_GET_ENDPOINT = os.environ.get("SHEETY_ENDPOINT_ENV")
+EMAILS_GET_ENDPOINT = os.environ.get("SHEETY_EMAILS_ENV")
 
-headers = {
+HEADERS = {
     'Authorization': f'Bearer {os.environ.get("SHEETY_TOKEN_ENV")}'
 }
 
@@ -17,7 +18,7 @@ class DataManager:
 
     # getting data from google sheets using Sheety API
     def get_destination_data(self):
-        response = requests.get(url=sheety_get_endpoint, headers=headers)
+        response = requests.get(url=SHEETY_GET_ENDPOINT, headers=HEADERS)
         self.destination_data = response.json()['prices']
         return self.destination_data
 
@@ -29,4 +30,9 @@ class DataManager:
                     'iataCode': city['iataCode']
                 }
             }
-            response = requests.put(url=f'{sheety_get_endpoint}/{city["id"]}', json=new_data, headers=headers)
+            response = requests.put(url=f'{SHEETY_GET_ENDPOINT}/{city["id"]}', json=new_data, headers=HEADERS)
+
+    def get_customer_data(self):
+        response = requests.get(url=EMAILS_GET_ENDPOINT, headers=HEADERS)
+        data = response.json()['users']
+        return data
