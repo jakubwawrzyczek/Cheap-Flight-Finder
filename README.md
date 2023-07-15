@@ -20,9 +20,14 @@ SHEETY_TOKEN_ENV=your sheety token
 TEQUILA_API_ENV=your tequila api key
 
 Additionally, you need to create a google sheets file with a formula
-like the one linked below:
+like the one linked: https://docs.google.com/spreadsheets/d/1EI_GoLOoTVZCF3lok5WWVLjhTf5CJ_UbmerEyUCQxgM/edit#gid=0
 
-https://docs.google.com/spreadsheets/d/1EI_GoLOoTVZCF3lok5WWVLjhTf5CJ_UbmerEyUCQxgM/edit#gid=0
+
+In addition, I created an application that allows you to save new users to the database on the repl.it website.
+I am attaching the link:
+https://replit.com/@jakubwawrzyczek/cheap-flights-user-registration#data_manager.py
+
+It is connected to the database used by the program checking flights and sending notifications, but it is used only to add new users
 
 I hope that's all you need to know!
 
