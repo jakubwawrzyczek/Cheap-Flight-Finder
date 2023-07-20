@@ -4,13 +4,13 @@ Before running the application, you must add your own keys and endpoints to the 
 Ensure that your '.env' file contains the following necessary information:
 
 # TWILIO
-ACCOUNT_SID_ENV=your sid
-AUTH_TOKEN_ENV=your token
-FROM_ENV=your from number
+ACCOUNT_SID_ENV=your sid ;
+AUTH_TOKEN_ENV=your token ;
+FROM_ENV=your from number ;
 TO_ENV=your to number
 
 # SHEETY
-SHEETY_ENDPOINT_ENV=your sheety endpoint
+SHEETY_ENDPOINT_ENV=your sheety endpoint ;
 SHEETY_TOKEN_ENV=your sheety token
 
 # TEQUILA
