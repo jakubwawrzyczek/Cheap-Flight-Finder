@@ -1,10 +1,7 @@
-You need to install datetime, and python-dotenv.
+To run the application, you need to install the required dependencies, 'datetime', and 'python-dotenv'.
 
-If you want the application to work, you must add your own keys and
-endpoints to the .env file.
-
-
-You need the following in your '.env' file for it to work:
+Before running the application, you must add your own keys and endpoints to the '.env' file.
+Ensure that your '.env' file contains the following necessary information:
 
 # TWILIO
 ACCOUNT_SID_ENV=your sid
@@ -20,15 +17,11 @@ SHEETY_TOKEN_ENV=your sheety token
 TEQUILA_API_ENV=your tequila api key
 
 Additionally, you need to create a google sheets file with a formula
-like the one linked: https://docs.google.com/spreadsheets/d/1EI_GoLOoTVZCF3lok5WWVLjhTf5CJ_UbmerEyUCQxgM/edit#gid=0
+like the one linked: [Google Sheets](https://docs.google.com/spreadsheets/d/1EI_GoLOoTVZCF3lok5WWVLjhTf5CJ_UbmerEyUCQxgM/edit#gid=0)
 
 
-In addition, I created an application that allows you to save new users to the database on the repl.it website.
-I am attaching the link:
-https://replit.com/@jakubwawrzyczek/cheap-flights-user-registration#data_manager.py
+I have developed an application that allows users to register and save their information to the database on the Repl.it website. [Cheap Flights User Registration.](https://replit.com/@jakubwawrzyczek/cheap-flights-user-registration#data_manager.py)
 
-It is connected to the database used by the program checking flights and sending notifications, but it is used only to add new users
+Please note that this application is specifically designed for adding new users to the database used by the flight-checking and notification program. It complements the main functionality of the program.
 
-I hope that's all you need to know!
-
-Program was made while doing Udemy Angela Yu Python course
+I created this application while taking the Python course on Udemy with Angela Yu.
